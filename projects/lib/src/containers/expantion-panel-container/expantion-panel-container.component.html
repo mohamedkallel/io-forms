@@ -1,0 +1,13 @@
+<mat-accordion #accordion>
+
+    <ng-template #template let-data="data">
+        <mat-expansion-panel #panel>
+            <mat-expansion-panel-header>
+                    <span [style.cursor]="'pointer'" [style.display]="displayRemove ? 'unset' : 'none'"><i class="material-icons" (click)="removePanel(panel)">
+                            delete_forever
+                            </i>&nbsp;&nbsp;&nbsp; </span>{{data.header}}
+            </mat-expansion-panel-header>
+        </mat-expansion-panel>
+    </ng-template>
+        
+</mat-accordion>

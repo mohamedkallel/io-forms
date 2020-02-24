@@ -1,0 +1,29 @@
+<mat-form-field [ngClass]="class" [appearance]="appearance">
+    <mat-label>{{attributes.placeholder}}</mat-label>
+    <!-- type is input -->
+    <input *ngIf="type==='input'" matInput [formControl]="formControl" #field>
+    <!-- type is select -->
+    <mat-select *ngIf="type==='select'" [formControl]="formControl" #select>
+        <mat-form-field *ngIf="filterEnabled" class="search-style">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="onFilter($event)">
+            <mat-icon matSuffix>
+                    search
+            </mat-icon>
+        </mat-form-field>
+        <mat-option *ngFor="let option of options" [value]="getValue(option)">
+            {{getLabel(option)}}
+        </mat-option>
+    </mat-select>
+    <!-- type is autocomplete -->
+    <ng-container *ngIf="type==='autocomplete'">
+        <input matInput [formControl]="formControl" [matAutocomplete]="auto" (keyup)="onFilter($event)">
+        <mat-autocomplete #auto="matAutocomplete" [autoActiveFirstOption]="attributes.autoActiveFirstOption" 
+            [classList]="attributes.classList" [disableRipple]="attributes.disableRipple"
+            [displayWith]="attributes.displayWith" [panelWidth]="attributes.panelWidth">
+            <mat-option *ngFor="let option of options" [value]="option" [innerHTML]="render(option)">
+            </mat-option>
+        </mat-autocomplete>
+    </ng-container>
+    <mat-error [ngStyle]="{'display':(formControl.invalid?'block':'none')}">{{getErrorMessage()}}</mat-error>
+</mat-form-field>

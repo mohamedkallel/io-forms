@@ -1,0 +1,26 @@
+<input type="file" (change)="onFileChange($event)" [multiple]="multiple" [accept]="accept" [style.display]="'none'" #fileInput>
+<div class="image-container">
+    <div  class="selected-images insert-image" (click)="fileInput.click()">
+        <div>
+        
+            <img [src]="cloudImage"><br>
+            {{multiple ? 'Add' : 'Select'}} File
+        </div>
+    </div>
+    <ng-container  *ngFor="let obj of dataObjects">
+<div  class="selected-images">
+    <img [src]="getFileData(obj)">
+    <div class="up-image">
+        <div class="up-background mat-toolbar mat-primary"></div>
+        <div class="actions">
+            <i class="material-icons" (click)="open(obj)">
+                    zoom_in
+                    </i>
+            <i class="material-icons" (click)="delete(obj)">
+                    delete_forever
+                    </i>
+        </div>
+    </div>
+</div>
+</ng-container>
+</div>

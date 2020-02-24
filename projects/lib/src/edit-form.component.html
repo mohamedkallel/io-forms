@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup" #custForm (ngSubmit)="submitForm()">
+    <mat-card>
+
+        <ng-content></ng-content>
+
+        <mat-card-header color="primary" *ngIf="customheader.children.length == 0">
+            <mat-card-title>{{title}}</mat-card-title>
+        </mat-card-header>
+        <span #customheader>
+            <ng-content select="edit-form-header"></ng-content>
+        </span>
+        <div #container></div>
+
+        <mat-card-actions align="end">
+            <ng-container *ngIf="actionbuttons.children.length == 0">
+                <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancel</button>
+                <button mat-raised-button type="submit" color="primary" [disabled]="!valid()">Save</button>
+            </ng-container>
+            <span #actionbuttons>
+                <ng-content select="edit-form-actions"></ng-content>
+            </span>
+        </mat-card-actions>
+
+    </mat-card>
+</form>
+<ng-template #cardGroup let-data="data">
+    <mat-card>
+        <div class="card-group-header">
+            <h3>{{data.title}}</h3>
+            <button mat-mini-fab *ngIf="data.showAdd" type="button" color="primary"
+                (click)="data.click($event)">+</button>
+        </div>
+        <mat-card-header class="card-header" color="primary">
+
+        </mat-card-header>
+        <div class="edit-form-group-content"></div>
+    </mat-card>
+
+</ng-template>
