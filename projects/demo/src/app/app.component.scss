@@ -1,0 +1,13 @@
+
+@import '~bootstrap/scss/bootstrap-grid.scss';
+
+$mycol: green;
+.block{
+    height: 20px;
+    @extend .col-12, .col-md-4, .col-lg-3;
+    background: $mycol !important;
+}
+
+.menu{
+    padding: 30px 5px;
+}

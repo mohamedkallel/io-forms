@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <script type="module">
+       import("./test.js").then(m => {
+           console.log(m)
+        console.log(new m.HelloWorld().sayHello())
+       })
+       
+    </script>
+
+</head>
+
+<body></body>
+
+</html>
